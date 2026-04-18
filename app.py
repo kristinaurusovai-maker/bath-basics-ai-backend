@@ -211,19 +211,19 @@ def chat(payload: ChatRequest):
             return make_response(answer, suggestions=[MAIN_MENU_LABEL])
 
     try:
-    ai_answer = ask_openai(raw_message)
-    if ai_answer:
+        ai_answer = ask_openai(raw_message)
+        if ai_answer:
+            return make_response(
+                ai_answer,
+                suggestions=[MAIN_MENU_LABEL, "Связаться с менеджером"]
+            )
+    except Exception as e:
+        print("OPENAI_ERROR:", repr(e))
         return make_response(
-            ai_answer,
-            suggestions=[MAIN_MENU_LABEL, "Связаться с менеджером"]
+            "Сейчас не удалось получить AI-ответ. Вы можете выбрать раздел ниже или написать менеджеру.",
+            suggestions=[MAIN_MENU_LABEL, "Связаться с менеджером"],
+            links=[("Перейти в Telegram", TELEGRAM_URL)],
+            handoff=True
         )
-except Exception as e:
-    print("OPENAI_ERROR:", repr(e))
-    return make_response(
-        "Сейчас не удалось получить AI-ответ. Вы можете выбрать раздел ниже или написать менеджеру.",
-        suggestions=[MAIN_MENU_LABEL, "Связаться с менеджером"],
-        links=[("Перейти в Telegram", TELEGRAM_URL)],
-        handoff=True
-    )
 
 return make_response(START_REPLY, START_SUGGESTIONS)
