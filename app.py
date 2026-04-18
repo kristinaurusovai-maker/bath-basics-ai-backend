@@ -226,4 +226,4 @@ def chat(payload: ChatRequest):
             handoff=True
         )
 
-return make_response(START_REPLY, START_SUGGESTIONS)
+    return make_response(START_REPLY, START_SUGGESTIONS)
