@@ -1,13 +1,11 @@
-[README.md](https://github.com/user-attachments/files/26859353/README.md)
-# BATH BASICS Assistant v3
+[README.md](https://github.com/user-attachments/files/26860388/README.md)
+# BATH BASICS Assistant v4
 
 Изменения:
-- товары в ветке "Подобрать аромат" стали кликабельными
-- добавлены кнопки "Назад" и "В главное меню"
+- OpenAI fallback для открытых вопросов
+- кликабельные товары в ветке "Подобрать аромат"
+- кнопки "Назад" и "В главное меню"
 
-## Render
-Build command:
-pip install -r requirements.txt
-
-Start command:
-uvicorn main:app --host 0.0.0.0 --port $PORT
+Добавить в Render:
+OPENAI_API_KEY=ваш_ключ
+OPENAI_MODEL=gpt-5.4
